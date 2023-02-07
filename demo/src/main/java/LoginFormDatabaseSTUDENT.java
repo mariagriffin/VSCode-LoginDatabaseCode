@@ -39,31 +39,24 @@ public class LoginFormDatabaseSTUDENT extends javax.swing.JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				// What changes can you add here to make this login more secure?
-//part 1		// Validate that the username and password match an eentry in the database?
-				// Output an appropriate message for incorrect details
-				// Take a look at Rule: MET00-J. Validate method arguments what other check do
-				// you need to add??
-
+				
+//part 1	//fix the getText()	warning!
 				String usernameEntered = txtUsername.getText();
 				String passwordEntered = txtPwd.getText();				
 				String departmentEntered = txtDept.getText();
 
-
-				if (usernameEntered.isEmpty() || passwordEntered.isEmpty()) {
-					JOptionPane.showMessageDialog(LoginFormDatabaseSTUDENT.this, "Please enter a username and password User Details");
-				} else {
+//part 2  	// What changes can you add here to make this login more secure?
+			// what if the values are null?? Are we checking?
+			// Output an appropriate message for null details
 
 					try {
 
 						conn = dbConnect();
 						System.out.println("Creating statement...");
 						
-//PART 2 A			//there is a more secure way to do this, using a prepared statement
-					//what coding guideline do we need to observe here?
+//PART 3 			//there is a more secure way to do this, using a prepared statement
 					//Fix this code to use a prepared Statement
-						String sql = "SELECT * FROM users where department = '" + departmentEntered + "'" ;    //Change this to use a prepared statement
-						System.out.println("sql" + sql);	
+						String sql = "SELECT * FROM users where department = '" + departmentEntered + "'" ;   						System.out.println("sql" + sql);	
 						stmt = conn.createStatement();
 						rs = stmt.executeQuery(sql);
 
@@ -71,15 +64,15 @@ public class LoginFormDatabaseSTUDENT extends javax.swing.JFrame {
 							System.out.println("Users available  " + rs.getString("username"));					
 						}
 						
-						rs = stmt.executeQuery(sql);             //!!NOT GOOD PRACTICE - THIS IS FOR DEMO PURPOSES ONLY!!
+						rs = stmt.executeQuery(sql);             
 						boolean matchFound = false;
 						while (rs.next()) {
-					//Validate that the username and password match an entry in the database
-//PART 2 B		//there are no errors in the code, yet this is not working why????
-				//What coding Guideline do we need to follow here??
 
-//PART 3 C		// Take a look at Rule: MET00-J. Validate method arguments 
-				//what other check is best practice to add here??
+				//Here we validate that the username and password match an entry in the database
+//PART 4		//there are no errors in the code, yet this is not working why????  INVALID USER!?
+			
+
+//PART 5		//what other check is best practice to add here??
 							if (usernameEntered == rs.getString("username") && passwordEntered == rs.getString("password")) {
 								JOptionPane.showMessageDialog(LoginFormDatabaseSTUDENT.this, "Valid User: " + usernameEntered);
 								 matchFound = true;
@@ -93,7 +86,6 @@ public class LoginFormDatabaseSTUDENT extends javax.swing.JFrame {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-				}
 
 				// STEP 6: Clean-up environment
 				dbClose();
@@ -118,7 +110,7 @@ public class LoginFormDatabaseSTUDENT extends javax.swing.JFrame {
 	 * code.
 	 */
 	private Connection dbConnect() {
-
+					/** CHANGE TO MATCH YOUR DATABSE **/
 		// database URL and credentials
 		final String DB_URL = "jdbc:mysql://localhost:3306/mysecureapplication";
 		final String USER = "newuser";
@@ -158,6 +150,8 @@ public class LoginFormDatabaseSTUDENT extends javax.swing.JFrame {
 			e.printStackTrace();
 		}
 	}
+
+/**** YOU DO NOT NEED TO MODIFY THE CODE BELOW HERE!! ***/
 
 	/**
 	 * This method is called from within the constructor to initialize the form.
