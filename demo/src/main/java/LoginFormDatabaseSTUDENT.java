@@ -113,8 +113,8 @@ public class LoginFormDatabaseSTUDENT extends javax.swing.JFrame {
 					/** CHANGE TO MATCH YOUR DATABSE **/
 		// database URL and credentials
 		final String DB_URL = "jdbc:mysql://localhost:3306/mysecureapplication";
-		final String USER = "newuser";
-		final String PASS = "Password@22";
+		final String USER = "root";
+		final String PASS = "password";
 
 		try {
 			// STEP 2: Register JDBC driver
