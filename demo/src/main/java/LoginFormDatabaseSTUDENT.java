@@ -46,17 +46,18 @@ public class LoginFormDatabaseSTUDENT extends javax.swing.JFrame {
 				String departmentEntered = txtDept.getText();
 
 //part 2  	// What changes can you add here to make this login more secure?
-			// what if the values are null?? Are we checking?
-			// Output an appropriate message for null details
+		// what if the values are null?? Are we checking?
+		// Output an appropriate message for null details
 
 					try {
 
 						conn = dbConnect();
 						System.out.println("Creating statement...");
 						
-//PART 3 			//there is a more secure way to do this, using a prepared statement
-					//Fix this code to use a prepared Statement
-						String sql = "SELECT * FROM users where department = '" + departmentEntered + "'" ;   						System.out.println("sql" + sql);	
+//PART 3 	//there is a more secure way to do this, using a prepared statement
+		//Fix this code to use a prepared Statement
+						String sql = "SELECT * FROM users where department = '" + departmentEntered + "'" ;   						
+						//System.out.println("sql" + sql);	
 						stmt = conn.createStatement();
 						rs = stmt.executeQuery(sql);
 
@@ -68,8 +69,8 @@ public class LoginFormDatabaseSTUDENT extends javax.swing.JFrame {
 						boolean matchFound = false;
 						while (rs.next()) {
 
-				//Here we validate that the username and password match an entry in the database
-//PART 4		//there are no errors in the code, yet this is not working why????  INVALID USER!?
+		//Here we validate that the username and password match an entry in the database
+//PART 4	//there are no errors in the code, yet this is not working why????  INVALID USER!?
 			
 
 							if (usernameEntered == rs.getString("username") && passwordEntered == rs.getString("password")) {
