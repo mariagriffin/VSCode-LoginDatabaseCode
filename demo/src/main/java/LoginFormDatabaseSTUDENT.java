@@ -46,43 +46,43 @@ public class LoginFormDatabaseSTUDENT extends javax.swing.JFrame {
 				String departmentEntered = txtDept.getText();
 
 //part 2  	// What changes can you add here to make this login more secure?
-		// what if the values are null?? Are we checking?
-		// Output an appropriate message for null details
+			// what if the values are null?? Are we checking?
+			// Output an appropriate message for null details
 
-					try {
+				try {
 
-						conn = dbConnect();
-						System.out.println("Creating statement...");
+					conn = dbConnect();
+					System.out.println("Creating statement...");
 						
 //PART 3 	//there is a more secure way to do this, using a prepared statement
-		//Fix this code to use a prepared Statement
-						String sql = "SELECT * FROM users where department = '" + departmentEntered + "'" ;   						
-						//System.out.println("sql" + sql);	
-						stmt = conn.createStatement();
-						rs = stmt.executeQuery(sql);
+			//Fix this code to use a prepared Statement
+					String sql = "SELECT * FROM users where department = '" + departmentEntered + "'" ;   						
+					//System.out.println("sql" + sql);	
+					stmt = conn.createStatement();
+					rs = stmt.executeQuery(sql);
 
-						while (rs.next()) {				
-							System.out.println("Users available  " + rs.getString("username"));					
-						}
+					while (rs.next()) {				
+						System.out.println("Users available  " + rs.getString("username"));					
+					}
 						
-						rs = stmt.executeQuery(sql);             
-						boolean matchFound = false;
-						while (rs.next()) {
+					rs = stmt.executeQuery(sql);             
+					boolean matchFound = false;
+					while (rs.next()) {
 
-		//Here we validate that the username and password match an entry in the database
-//PART 4	//there are no errors in the code, yet this is not working why????  INVALID USER!?
+				//Here we validate that the username and password match an entry in the database
+//PART 4		//there are no errors in the code, yet this is not working why????  INVALID USER!?
 			
-
-							if (usernameEntered == rs.getString("username") && passwordEntered == rs.getString("password")) {
-								JOptionPane.showMessageDialog(LoginFormDatabaseSTUDENT.this, "Valid User: " + usernameEntered);
-								 matchFound = true;
-								break;
-							} 							
-						}
-						if (matchFound == false) {
-							JOptionPane.showMessageDialog(LoginFormDatabaseSTUDENT.this, "Invalid User Details");
-						}
-					} catch (SQLException e1) {
+						if (usernameEntered == rs.getString("username") && passwordEntered == rs.getString("password")) {
+							JOptionPane.showMessageDialog(LoginFormDatabaseSTUDENT.this, "Valid User: " + usernameEntered);
+						 	matchFound = true;
+							break;
+					} 							
+				}
+				if (matchFound == false) {
+					JOptionPane.showMessageDialog(LoginFormDatabaseSTUDENT.this, "Invalid User Details");
+				}
+				
+				} catch (SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
