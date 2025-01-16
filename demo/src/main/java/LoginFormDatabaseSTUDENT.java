@@ -70,7 +70,7 @@ public class LoginFormDatabaseSTUDENT extends javax.swing.JFrame {
 					while (rs.next()) {
 
 				//Here we validate that the username and password match an entry in the database
-//PART 4		//there are no errors in the code, yet this is not working why????  INVALID USER!?
+//PART 4		//there are no errors in the code, yet this is not working why????  Why do we get : INVALID USER!?
 			
 						if (usernameEntered == rs.getString("username") && passwordEntered == rs.getString("password")) {
 							JOptionPane.showMessageDialog(LoginFormDatabaseSTUDENT.this, "Valid User: " + usernameEntered);
