@@ -49,6 +49,9 @@ public class LoginFormDatabaseSTUDENT extends javax.swing.JFrame {
 			// what if the values are null?? Are we checking?
 			// Output an appropriate message for null details
 
+		//Task: Check that the user has entered a value for all 3 inputs.
+		//	(if you want to challenge yourself - check, using regex, that the username is in the format firstname.secondname)
+
 				try {
 
 					conn = dbConnect();
