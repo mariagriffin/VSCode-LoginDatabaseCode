@@ -57,8 +57,7 @@ public class LoginFormDatabaseSTUDENT extends javax.swing.JFrame {
 					conn = dbConnect();
 					System.out.println("Creating statement...");
 						
-//PART 3 	//there is a more secure way to do this, using a prepared statement
-			//Fix this code to use a prepared Statement
+//PART 3 	//Fix this code to use a prepared Statement
 					String sql = "SELECT * FROM users where department = '" + departmentEntered + "'" ;   						
 					//System.out.println("sql" + sql);	
 					stmt = conn.createStatement();
